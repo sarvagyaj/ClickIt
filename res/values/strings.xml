@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Ninja Fruit</string>
+    <string name="action_settings">Settings</string>
+    <string name="play">Play Game</string>
+    <string name="Instructions">Instructions</string>
+    <string name="Exit">Quit</string>
+    <string name="instructions">Game Instructions: \n\n * Welcome to Ninja Fruit. \n * To play this game, a player needs to click on the fruits. \n * Upon clicking a bad fruit, user will lose one life.</string>
+    <string name="instructionText">Welcome to Ninja Fruit Game. \n - to play this gamevoernivoenoivnmreiobnireonb tn bolnt oblm elfkm. \n eormvorem bomrt bo</string>
+    <string name="back">Back</string>
+    <color name="white">#FFFFFF</color>
+
+</resources>

@@ -11,4 +11,21 @@
     tools:context=".MainActivity"
      >
 
+    <TextView
+        android:id="@+id/Score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/scoreValue"
+        android:text="Score : "
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/scoreValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/Score"
+        android:layout_alignBottom="@+id/Score"
+        android:layout_alignParentRight="true"
+        android:textSize="20sp" />
 </RelativeLayout>

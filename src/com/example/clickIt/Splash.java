@@ -1,6 +1,4 @@
-package com.example.bikerace;
-
-import java.io.IOException;
+package com.example.clickIt;
 
 import android.app.Activity;
 import android.content.Intent;

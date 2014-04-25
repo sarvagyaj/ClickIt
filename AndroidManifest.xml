@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bikerace"
+    package="com.example.clickIt"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.bikerace.Splash"
+            android:name="com.example.clickIt.Splash"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
@@ -25,39 +25,39 @@
         </activity>
         
         <activity
-            android:name="com.example.bikerace.Homepage"
+            android:name="com.example.clickIt.Homepage"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.example.bikerace.HOMEPAGE"/>
+                <action android:name="com.example.clickItrace.HOMEPAGE"/>
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
         <activity
-            android:name="com.example.bikerace.Instructions"
+            android:name="com.example.clickIt.Instructions"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.example.bikerace.INSTRUCTIONS"/>
+                <action android:name="com.example.clickIt.INSTRUCTIONS"/>
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
          <activity
-            android:name="com.example.bikerace.MainActivity"
+            android:name="com.example.clickIt.MainActivity"
             android:label="@string/app_name" 
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="com.example.bikerace.MAINACTIVITY"/>
+                <action android:name="com.example.clickIt.MAINACTIVITY"/>
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         
-        <activity android:name="com.example.bikerace.OnGameOver" android:screenOrientation="portrait"></activity>
+        <activity android:name="com.example.clickIt.OnGameOver" android:screenOrientation="portrait"></activity>
     </application>
 
 </manifest>

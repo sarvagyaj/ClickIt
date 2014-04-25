@@ -1,13 +1,13 @@
-package com.example.bikerace;
+package com.example.clickIt;
 
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
-import android.R.color;
-import android.os.Bundle;
+
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
 import android.view.Menu;
@@ -16,14 +16,16 @@ import android.view.ViewGroup.LayoutParams;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class MainActivity extends Activity {
 
 	Random r;
-	static int score = 0;
+	static Integer score = 0;
 	ImageView  testImageView, bcImageView, clickImageView, wrongBall;
+	TextView scoreValue;
 	int height, width;
 	Timer timer,boundarycheckTimer, givTimer;
 	RunTask obj;
@@ -45,12 +47,11 @@ public class MainActivity extends Activity {
 		
 		relLayout=(RelativeLayout) findViewById(R.id.relativeLayout1);
 		//relLayout.setOrientation(RelativeLayout.VERTICAL);
+		scoreValue =(TextView) findViewById(R.id.scoreValue);
         
 		r = new Random();
 		score = 0;
-		
-		
-		
+		scoreValue.setText(score.toString());
 		firstCall();
 		
 	}
@@ -167,7 +168,7 @@ public class MainActivity extends Activity {
 	
 	public void onGameOverIntent()
 	{
-		OnGameOver.reason = "You Missed the Ball" ;
+		OnGameOver.reason = "You Missed the Strawberry" ;
 		onExitMainActivity();
 	}
 	
@@ -227,7 +228,6 @@ public class MainActivity extends Activity {
 						imageView.getLayoutParams().width = width/5;
 						
 						relLayout.addView(imageView);
-						//relLayout.setBackgroundColor(color.background_dark);
 						setContentView(relLayout);
 						numberOfImages++;
 					}
@@ -244,12 +244,9 @@ public class MainActivity extends Activity {
 		imageView = new ImageView(this);
 	}
 	public void imageClickEvent(int id)
-	{
-		//Toast.makeText(getBaseContext(), String.valueOf(id),Toast.LENGTH_SHORT).show();
-		
-		
+	{		
 		score++;
-		
+		scoreValue.setText(score.toString());
 		
 		clickImageView = (ImageView) findViewById(id);
 		clickImageView.setX(generateRandomXCoordinate());
@@ -301,7 +298,7 @@ public class MainActivity extends Activity {
 	}
 	public void wrongImageClickEvent()
 	{
-		OnGameOver.reason = "You clicked on the wrong ball!";
+		OnGameOver.reason = "You clicked not on fruit but on jelly :(";
 		onExitMainActivity();
 	}
 	

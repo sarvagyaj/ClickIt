@@ -1,4 +1,4 @@
-package com.example.bikerace;
+package com.example.clickIt;
 
 import android.app.Activity;
 import android.content.Intent;

@@ -46,14 +46,12 @@ public class MainActivity extends Activity {
 		setContentView(R.layout.activity_main);
 		
 		relLayout=(RelativeLayout) findViewById(R.id.relativeLayout1);
-		//relLayout.setOrientation(RelativeLayout.VERTICAL);
 		scoreValue =(TextView) findViewById(R.id.scoreValue);
         
 		r = new Random();
 		score = 0;
 		scoreValue.setText(score.toString());
 		firstCall();
-		
 	}
 
 	@Override
@@ -69,13 +67,9 @@ public class MainActivity extends Activity {
 		Display display = getWindowManager().getDefaultDisplay();
 		DisplayMetrics ds = new DisplayMetrics();
 		display.getMetrics(ds);
-		//Point size = new Point();
-		//display.getSize(size);
 		Window w = this.getWindow();
 		width = w.getDecorView().getWidth();
 		height = w.getDecorView().getHeight();
-		//width = ds.widthPixels;
-		//height = ds.heightPixels;
 		
 		Toast.makeText(getBaseContext(), width+" "+height, Toast.LENGTH_LONG).show();
 	}
@@ -120,8 +114,6 @@ public class MainActivity extends Activity {
 					@Override 
 					public void run()
 					{
-						
-							//iv1.setY(iv1.getY()+5.0f+ speed);
 							for(int i= 1 ;i<numberOfImages;i++)
 							{
 								testImageView = (ImageView) findViewById(i);
@@ -205,7 +197,6 @@ public class MainActivity extends Activity {
 							
 							@Override
 							public void onClick(View v) {
-									// TODO Auto-generated method stub
 									wrongImageClickEvent();
 								}
 							});
@@ -217,7 +208,6 @@ public class MainActivity extends Activity {
 							
 								@Override
 								public void onClick(View v) {
-								// TODO Auto-generated method stub
 									img_width = imageView.getWidth();
 									imageClickEvent(v.getId());
 								}

@@ -34,7 +34,7 @@ public class Splash extends Activity
 				}
 				finally
 				{
-					Intent intent = new Intent("com.example.bikerace.HOMEPAGE");
+					Intent intent = new Intent("com.example.clickIt.HOMEPAGE");
 					startActivity(intent);
 				}
 			}

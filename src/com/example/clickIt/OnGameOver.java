@@ -6,6 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+
 
 public class OnGameOver extends Activity{
 	 TextView tvReason ;
@@ -20,6 +24,17 @@ public class OnGameOver extends Activity{
 		
 		TextView tv = (TextView) findViewById(R.id.textView1);
 		tv.setText("Your score : "+MainActivity.score);
+		currentScore = MainActivity.score;
+		SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+		totalScore = preferences1.getInt("TotalScore", 0) + currentScore;
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		SharedPreferences.Editor editor = preferences.edit();
+		editor.putInt("TotalScore", totalScore);
+		editor.commit();
+		  
+		  TextView score = (TextView) findViewById(R.id.tvtotalScore);
+		  score.setText("Total Score : "+ totalScore);
 		
 		ImageButton btn = (ImageButton) findViewById(R.id.ibPlayAgain);
 		btn.setOnClickListener(new View.OnClickListener() {

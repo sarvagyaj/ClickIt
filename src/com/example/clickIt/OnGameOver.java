@@ -2,7 +2,9 @@ package com.example.clickIt;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -10,6 +12,10 @@ import android.widget.TextView;
 public class OnGameOver extends Activity{
 	 TextView tvReason ;
 	static String reason;
+	private static int totalScore=0;
+	private int currentScore = 0;
+	
+	
 	 @Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -19,7 +25,18 @@ public class OnGameOver extends Activity{
 		tvReason.setText(reason);
 		
 		TextView tv = (TextView) findViewById(R.id.textView1);
-		tv.setText("Your score : "+MainActivity.score);
+		tv.setText("Your score : "+MainActivity.score); 
+		currentScore = MainActivity.score;
+		SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+		 totalScore = preferences1.getInt("TotalScore", 0) + currentScore;
+		
+		SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
+		  SharedPreferences.Editor editor = preferences.edit();
+		  editor.putInt("TotalScore", totalScore);
+		  editor.commit();
+		  
+		  TextView score = (TextView) findViewById(R.id.tvtotalScore);
+		  score.setText("Total Score : "+ totalScore);
 		
 		ImageButton btn = (ImageButton) findViewById(R.id.ibPlayAgain);
 		btn.setOnClickListener(new View.OnClickListener() {
@@ -31,5 +48,6 @@ public class OnGameOver extends Activity{
 				startActivity(i);
 			}
 		});
+		btn.setVisibility(0);
 	}
 }

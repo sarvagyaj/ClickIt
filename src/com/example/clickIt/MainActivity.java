@@ -6,10 +6,13 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Display;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup.LayoutParams;
@@ -44,7 +47,7 @@ public class MainActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+
 		relLayout=(RelativeLayout) findViewById(R.id.relativeLayout1);
 		scoreValue =(TextView) findViewById(R.id.scoreValue);
         
@@ -70,10 +73,10 @@ public class MainActivity extends Activity {
 		Window w = this.getWindow();
 		width = w.getDecorView().getWidth();
 		height = w.getDecorView().getHeight();
-		
+
 		Toast.makeText(getBaseContext(), width+" "+height, Toast.LENGTH_LONG).show();
 	}
-	
+
 	public void firstCall()
 	{
 		if(timer != null)
@@ -83,21 +86,21 @@ public class MainActivity extends Activity {
 		timer = new Timer();
 		obj = new RunTask();
 		timer.schedule(obj,1000,100);
-		
+
 		if(boundarycheckTimer != null)
 		{
 			boundarycheckTimer.cancel();
 		}
-		
+
 		objBC = new BoundaryCheck();
 		boundarycheckTimer = new Timer();
 		boundarycheckTimer.schedule(objBC,1000,100);
-		
+
 		if(givTimer != null)
 		{
 			givTimer.cancel();
 		}
-		
+
 		objGIV = new GenerateImageView();
 		givTimer = new Timer();
 		givTimer.schedule(objGIV,1000,1000);
@@ -120,11 +123,11 @@ public class MainActivity extends Activity {
 								testImageView.setY(testImageView.getY()+5.0f);
 							}
 						}
-					
+
 				});
 		}
 	}
-	
+
 	class BoundaryCheck extends TimerTask
 	{
 		@Override
@@ -135,7 +138,7 @@ public class MainActivity extends Activity {
 					@Override
 					public void run()
 					{
-						
+
 						for(int i= 1; i< numberOfImages ; i++)
 						{
 							bcImageView = (ImageView) findViewById(i);
@@ -150,36 +153,36 @@ public class MainActivity extends Activity {
 								else
 									onGameOverIntent();
 							}
-							
+
 						}
-						
+
 					}
 				});
 		}
 	}
-	
+
 	public void onGameOverIntent()
 	{
 		OnGameOver.reason = "You Missed the Strawberry" ;
 		onExitMainActivity();
 	}
-	
+
 	class GenerateImageView extends TimerTask
 	{
 		@Override
 		public void run()
 		{
-			
+
 			runOnUiThread(new Runnable()
 			{
-				
+
 				@Override
 				public void run()
 				{
 					int xCoord;
 					xCoord = generateRandomXCoordinate();
 					System.out.println(xCoord);
-					
+
 					newImageView();
 					imageView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT,LayoutParams.WRAP_CONTENT));
 					initialImgCoordinates[imageId][0]=xCoord;
@@ -194,7 +197,7 @@ public class MainActivity extends Activity {
 						{
 							imageView.setImageResource(R.drawable.strawberry_jelly);
 							imageView.setOnClickListener(new View.OnClickListener() {
-							
+
 							@Override
 							public void onClick(View v) {
 									wrongImageClickEvent();
@@ -205,7 +208,7 @@ public class MainActivity extends Activity {
 						{
 							imageView.setImageResource(R.drawable.strawberry);
 							imageView.setOnClickListener(new View.OnClickListener() {
-							
+
 								@Override
 								public void onClick(View v) {
 									img_width = imageView.getWidth();
@@ -216,7 +219,7 @@ public class MainActivity extends Activity {
 			        //adding view to layout
 						imageView.getLayoutParams().height = height/5;
 						imageView.getLayoutParams().width = width/5;
-						
+
 						relLayout.addView(imageView);
 						setContentView(relLayout);
 						numberOfImages++;
@@ -237,7 +240,7 @@ public class MainActivity extends Activity {
 	{		
 		score++;
 		scoreValue.setText(score.toString());
-		
+
 		clickImageView = (ImageView) findViewById(id);
 		clickImageView.setX(generateRandomXCoordinate());
 		clickImageView.setY(0.0f);
@@ -245,7 +248,7 @@ public class MainActivity extends Activity {
 	public int generateRandomXCoordinate()
 	{
 		int i;
-		
+
 		if ( numberOfImages == 1)
 		{
 			lastXCoord = r.nextInt(width/2);
@@ -266,7 +269,7 @@ public class MainActivity extends Activity {
 					return lastXCoord;
 				}
 			}
-	 
+
 		}
 		else
 		{
@@ -282,23 +285,23 @@ public class MainActivity extends Activity {
 					return lastXCoord;
 				}
 			}
-			
+
 		}
-		
+
 	}
 	public void wrongImageClickEvent()
 	{
-		OnGameOver.reason = "You clicked not on fruit but on jelly :(";
+		OnGameOver.reason = "OOPS!!! you clicked on Jelly";
 		onExitMainActivity();
 	}
-	
+
 	public void onExitMainActivity()
 	{
 		ImageView onExitImageView;
 		timer.cancel();
 		objBC.cancel();
 		objGIV.cancel();
-		
+
 		//testImageView =null;
 		for(int i=1; i<numberOfImages;i++)
 		{
@@ -306,7 +309,7 @@ public class MainActivity extends Activity {
 			onExitImageView.setVisibility(ImageView.GONE);
 			//testImageView = null;
 		}
-		
+
 		Arrays.fill(imgCoordinates, null);
 		numberOfImages = 1;
 		relLayout = null;
@@ -315,8 +318,47 @@ public class MainActivity extends Activity {
 		imageId=1;
 		clickImageView = null;
 		wrongBall = null;
-		
+
 		Intent i =new Intent(getBaseContext(), OnGameOver.class );
+		i.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
 		startActivity(i);
+	}
+	
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			alert();
+		}
+		return super.onKeyDown(keyCode, event);
+	}
+	
+	public void alert() {
+		AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+		builder1.setMessage("Are you sure you want to exit ?");
+		builder1.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// ---  TODO Auto-generated method stub ---
+				Intent a = new Intent(MainActivity.this, Homepage.class);
+				a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+				startActivity(a);
+			}
+		});
+		
+		builder1.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				// ---  TODO Auto-generated method stub ---	
+			}
+		});
+
+		builder1.show();
+	}
+	
+	protected void onPause() {
+		// ---  TODO Auto-generated method stub
+		super.onPause();
+		finish();
 	}
 }

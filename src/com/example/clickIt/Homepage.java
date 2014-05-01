@@ -3,6 +3,7 @@ package com.example.clickIt;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 
@@ -57,5 +58,18 @@ public class Homepage extends Activity
 		});
 						
 	}
+	
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+			if (keyCode == KeyEvent.KEYCODE_BACK) {
+				android.os.Process.killProcess(android.os.Process.myPid());
+				return true;
+			}
+			return false;
+		}
+	 
+	
 
 }
+
+
+

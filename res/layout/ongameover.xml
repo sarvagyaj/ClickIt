@@ -1,19 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" 
-    android:background="@drawable/img_ongameover">
+    android:layout_height="match_parent"
+    android:background="@drawable/instruct"
+    android:orientation="vertical" >
 
     <TextView
         android:id="@+id/tvReason"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="48dp"
-        android:text="You missed the ball!"
-        android:textColor="@android:color/white" 
-        android:textSize="22sp"/>
+        android:layout_marginTop="50dp"
+        android:gravity="center"
+        android:textColor="#f79d0b"
+        android:textSize="28sp" />
 
     <TextView
         android:id="@+id/textView1"
@@ -21,30 +20,42 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="34dp"
-        android:layout_marginTop="124dp"
-        android:text="Your Score :"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:text="Current Score :"
         android:textColor="@android:color/white"
-        android:textSize="22sp" />
+        android:textSize="30sp" />
+
+    <blink
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Game Over"
+            android:textColor="#ff3601"
+            android:textSize="30sp" />
+    </blink>
+
+    <TextView
+        android:id="@+id/tvtotalScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="Total Score :"
+        android:textColor="@android:color/white"
+        android:textSize="30sp" />
 
     <ImageButton
         android:id="@+id/ibPlayAgain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/tvReason"
-        android:layout_centerHorizontal="true"
-        android:scaleX=".75"
-        android:scaleY=".75"
-        android:src="@drawable/button" />
+        android:layout_marginTop="30dp"
+        android:src="@drawable/btn_pa" 
+        android:layout_gravity="center"/>
 
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/ibPlayAgain"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="28dp"
-        android:text="Play Again"
-        android:textSize="22sp" />
-    
-</RelativeLayout>
+</LinearLayout>

@@ -26,7 +26,7 @@ public class Splash extends Activity
 			{
 				try
 				{
-					sleep(7000);
+					sleep(2000);
 				}
 				catch(InterruptedException e)
 				{
@@ -34,7 +34,7 @@ public class Splash extends Activity
 				}
 				finally
 				{
-					Intent intent = new Intent("com.example.clickIt.HOMEPAGE");
+					Intent intent = new Intent(Splash.this, Homepage.class);
 					startActivity(intent);
 				}
 			}

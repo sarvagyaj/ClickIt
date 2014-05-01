@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.TextView;
@@ -14,7 +15,7 @@ public class OnGameOver extends Activity{
 	static String reason;
 	private static int totalScore=0;
 	private int currentScore = 0;
-	
+		
 	
 	 @Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -24,8 +25,9 @@ public class OnGameOver extends Activity{
 		tvReason = (TextView) findViewById(R.id.tvReason);
 		tvReason.setText(reason);
 		
+		
 		TextView tv = (TextView) findViewById(R.id.textView1);
-		tv.setText("Your score : "+MainActivity.score); 
+		tv.setText("Current score : "+MainActivity.score); 
 		currentScore = MainActivity.score;
 		SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
 		 totalScore = preferences1.getInt("TotalScore", 0) + currentScore;
@@ -50,4 +52,21 @@ public class OnGameOver extends Activity{
 		});
 		btn.setVisibility(0);
 	}
+	 
+	 public boolean onKeyDown(int keyCode, KeyEvent event) {
+			if (keyCode == KeyEvent.KEYCODE_BACK) {
+				Intent a = new Intent(this, Homepage.class);
+				a.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+				startActivity(a);
+				
+				return true;
+			}
+			return super.onKeyDown(keyCode, event);
+		}
+	 
+	 protected void onPause() {
+			// ---  TODO Auto-generated method stub
+			super.onPause();
+			finish();
+		}
 }
